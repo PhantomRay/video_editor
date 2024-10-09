@@ -14,11 +14,14 @@ dependencies:
   flutter:
     sdk: flutter
 
-  path: ^1.8.0 # update to `1.8.1` causes #79
-  path_provider: ^2.0.12
-  transparent_image: ^2.0.1 # show fade-in placeholder in thumbnails generation
-  video_player: ^2.6.1
-  video_thumbnail: ^0.5.3
+  path: 1.9.0
+  path_provider: 2.1.4
+  transparent_image: 2.0.1 # show fade-in placeholder in thumbnails generation
+  video_thumbnail: 0.5.3
+  better_player_plus:
+    git:
+      url: https://github.com/huangred/better_player_plus.git
+      ref: c23efdd0e3ad330efb63d422a05b2521024dfb45
 
 dev_dependencies:
   flutter_test:

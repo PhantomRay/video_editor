@@ -46,14 +46,12 @@ class CoverSelection extends StatefulWidget {
   State<CoverSelection> createState() => _CoverSelectionState();
 }
 
-class _CoverSelectionState extends State<CoverSelection>
-    with AutomaticKeepAliveClientMixin {
+class _CoverSelectionState extends State<CoverSelection> with AutomaticKeepAliveClientMixin {
   Duration? _startTrim, _endTrim;
 
   Size _layout = Size.zero;
   final ValueNotifier<Rect> _rect = ValueNotifier<Rect>(Rect.zero);
-  final ValueNotifier<TransformData> _transform =
-      ValueNotifier<TransformData>(const TransformData());
+  final ValueNotifier<TransformData> _transform = ValueNotifier<TransformData>(const TransformData());
 
   late Stream<List<CoverData>> _stream = (() => _generateCoverThumbnails())();
 
@@ -87,9 +85,7 @@ class _CoverSelectionState extends State<CoverSelection>
     );
 
     // if trim values changed generate new thumbnails
-    if (!widget.controller.isTrimming &&
-        (_startTrim != widget.controller.startTrim ||
-            _endTrim != widget.controller.endTrim)) {
+    if (!widget.controller.isTrimming && (_startTrim != widget.controller.startTrim || _endTrim != widget.controller.endTrim)) {
       _startTrim = widget.controller.startTrim;
       _endTrim = widget.controller.endTrim;
       setState(() => _stream = _generateCoverThumbnails());
@@ -103,18 +99,14 @@ class _CoverSelectionState extends State<CoverSelection>
 
   /// Returns the max size the layout should take with the rect value
   Size _calculateMaxLayout() {
-    final ratio = _rect.value == Rect.zero
-        ? widget.controller.video.value.aspectRatio
-        : _rect.value.size.aspectRatio;
-    return ratio < 1.0
-        ? Size(widget.size * ratio, widget.size)
-        : Size(widget.size, widget.size / ratio);
+    final ratio = _rect.value == Rect.zero ? widget.controller.video.videoPlayerController!.value.aspectRatio : _rect.value.size.aspectRatio;
+    return ratio < 1.0 ? Size(widget.size * ratio, widget.size) : Size(widget.size, widget.size / ratio);
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    final wrap = widget.wrap ?? Wrap();
+    final wrap = widget.wrap ?? const Wrap();
 
     return StreamBuilder<List<CoverData>>(
         stream: _stream,
@@ -135,11 +127,9 @@ class _CoverSelectionState extends State<CoverSelection>
                     children: snapshot.data!
                         .map(
                           (coverData) => ValueListenableBuilder<CoverData?>(
-                              valueListenable:
-                                  widget.controller.selectedCoverNotifier,
+                              valueListenable: widget.controller.selectedCoverNotifier,
                               builder: (context, selectedCover, __) {
-                                final isSelected = coverData.sameTime(
-                                    widget.controller.selectedCoverVal!);
+                                final isSelected = coverData.sameTime(widget.controller.selectedCoverVal!);
                                 final coverThumbnail = _buildSingleCover(
                                   coverData,
                                   transform,
@@ -147,14 +137,11 @@ class _CoverSelectionState extends State<CoverSelection>
                                   isSelected: isSelected,
                                 );
 
-                                if (isSelected &&
-                                    widget.selectedCoverBuilder != null) {
+                                if (isSelected && widget.selectedCoverBuilder != null) {
                                   final size = _calculateMaxLayout();
                                   return widget.selectedCoverBuilder!(
                                     coverThumbnail,
-                                    widget.controller.isRotated
-                                        ? size.flipped
-                                        : size,
+                                    widget.controller.isRotated ? size.flipped : size,
                                   );
                                 }
 
@@ -196,8 +183,7 @@ class _CoverSelectionState extends State<CoverSelection>
                     if (_layout != size) {
                       _layout = size;
                       // init the widget with controller values
-                      WidgetsBinding.instance
-                          .addPostFrameCallback((_) => _scaleRect());
+                      WidgetsBinding.instance.addPostFrameCallback((_) => _scaleRect());
                     }
 
                     return RepaintBoundary(
@@ -217,12 +203,9 @@ class _CoverSelectionState extends State<CoverSelection>
               Positioned.fill(
                 child: DecoratedBox(
                   decoration: BoxDecoration(
-                    borderRadius:
-                        BorderRadius.circular(coverStyle.borderRadius),
+                    borderRadius: BorderRadius.circular(coverStyle.borderRadius),
                     border: Border.all(
-                      color: isSelected
-                          ? coverStyle.selectedBorderColor
-                          : Colors.transparent,
+                      color: isSelected ? coverStyle.selectedBorderColor : Colors.transparent,
                       width: coverStyle.borderWidth,
                     ),
                   ),

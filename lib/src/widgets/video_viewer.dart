@@ -1,6 +1,6 @@
+import 'package:better_player_plus/better_player_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:video_editor/src/controller.dart';
-import 'package:video_player/video_player.dart';
 
 class VideoViewer extends StatelessWidget {
   const VideoViewer({super.key, required this.controller, this.child});
@@ -12,7 +12,7 @@ class VideoViewer extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (controller.video.value.isPlaying) {
+        if (controller.video.videoPlayerController!.value.isPlaying) {
           controller.video.pause();
         } else {
           controller.video.play();
@@ -22,12 +22,12 @@ class VideoViewer extends StatelessWidget {
         child: Stack(
           children: [
             AspectRatio(
-              aspectRatio: controller.video.value.aspectRatio,
-              child: VideoPlayer(controller.video),
+              aspectRatio: controller.video.videoPlayerController!.value.aspectRatio,
+              child: BetterPlayer(controller: controller.video),
             ),
             if (child != null)
               AspectRatio(
-                aspectRatio: controller.video.value.aspectRatio,
+                aspectRatio: controller.video.videoPlayerController!.value.aspectRatio,
                 child: child,
               ),
           ],
