@@ -205,8 +205,8 @@ class VideoEditorController extends ChangeNotifier {
     Completer completer = Completer();
 
     void eventListener(event) {
-      if (event.betterPlayerEventType == BetterPlayerEventType.initialized) {
-        completer.complete();
+      if ([BetterPlayerEventType.initialized, BetterPlayerEventType.exception].contains(event.betterPlayerEventType)) {
+        if (!completer.isCompleted) completer.complete();
       }
     }
 
@@ -220,9 +220,11 @@ class VideoEditorController extends ChangeNotifier {
     _video.setOverriddenAspectRatio(_video.videoPlayerController!.value.aspectRatio);
 
     if (!completer.isCompleted) {
-      await completer.future.whenComplete(() => _video.removeEventsListener(eventListener)).timeout(const Duration(seconds: 5), onTimeout: () {
-        throw TimeoutException('Video initialization error');
+      await completer.future.whenComplete(() => _video.removeEventsListener(eventListener)).onError((error, stackTrace) {
+        throw Exception('Error initializing video: $error');
       });
+    } else {
+      _video.removeEventsListener(eventListener);
     }
 
     if (minDuration > videoDuration) {
