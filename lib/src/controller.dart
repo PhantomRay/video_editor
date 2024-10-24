@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:better_player_plus/better_player_plus.dart';
 import 'package:flutter/material.dart';
@@ -201,6 +202,15 @@ class VideoEditorController extends ChangeNotifier {
   /// }, test: (e) => e is VideoMinDurationError);
   /// ```
   Future<void> initialize({double? aspectRatio}) async {
+    Completer completer = Completer();
+
+    void eventListener(event) {
+      if (event.betterPlayerEventType == BetterPlayerEventType.initialized) {
+        completer.complete();
+      }
+    }
+
+    _video.addEventsListener(eventListener);
     await _video.setupDataSource(
       BetterPlayerDataSource.file(
         Platform.isIOS ? Uri.encodeFull(file.path) : file.path,
@@ -208,6 +218,13 @@ class VideoEditorController extends ChangeNotifier {
       ),
     );
     _video.setOverriddenAspectRatio(_video.videoPlayerController!.value.aspectRatio);
+
+    if (!completer.isCompleted) {
+      await completer.future.whenComplete(() => _video.removeEventsListener(eventListener)).timeout(const Duration(seconds: 5), onTimeout: () {
+        throw TimeoutException('Video initialization error');
+      });
+    }
+
     if (minDuration > videoDuration) {
       throw VideoMinDurationError(minDuration, videoDuration);
     }
