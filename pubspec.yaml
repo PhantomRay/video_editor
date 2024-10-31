@@ -15,13 +15,13 @@ dependencies:
     sdk: flutter
 
   path: 1.9.0
-  path_provider: 2.1.4
+  path_provider: 2.1.5
   transparent_image: 2.0.1 # show fade-in placeholder in thumbnails generation
   video_thumbnail: 0.5.3
   better_player_plus:
     git:
       url: https://github.com/huangred/better_player_plus.git
-      ref: c23efdd0e3ad330efb63d422a05b2521024dfb45
+      ref: 6671d719ad4a541bd11afca5482ab55f42002ec3
 
 dev_dependencies:
   flutter_test:
