@@ -1,11 +1,10 @@
 name: video_editor
 version: 3.0.0
 description: |
- A flutter package for editing video with fully customizable UI.
- Supports crop, trim, rotation and cover selection.
- Provides commands to run in order to export the video or cover.
+  A flutter package for editing video with fully customizable UI.
+  Supports crop, trim, rotation and cover selection.
+  Provides commands to run in order to export the video or cover.
 repository: https://github.com/LeGoffMael/video_editor
-
 environment:
   flutter: ">=3.0.0"
   sdk: ">=2.17.0 <3.0.0"
@@ -20,8 +19,8 @@ dependencies:
   video_thumbnail: 0.5.3
   better_player_plus:
     git:
-      url: https://github.com/huangred/better_player_plus.git
-      ref: 6671d719ad4a541bd11afca5482ab55f42002ec3
+      url: https://github.com/PhantomRay/better_player_plus.git
+      ref: 1137724be85732c109b37b588d9e610617e0b35e
 
 dev_dependencies:
   flutter_test:
@@ -30,5 +29,5 @@ dev_dependencies:
   flutter_lints: ^2.0.1
 
 screenshots:
-  - description: 'Video editor demo'
+  - description: "Video editor demo"
     path: assets/demo_thumb.webp
