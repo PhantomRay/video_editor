@@ -20,8 +20,8 @@ dependencies:
   video_thumbnail: 0.5.3
   better_player_plus:
     git:
-      url: https://github.com/huangred/better_player_plus.git
-      ref: 6671d719ad4a541bd11afca5482ab55f42002ec3
+      url: https://github.com/PhantomRay/better_player_plus.git
+      ref: 1137724be85732c109b37b588d9e610617e0b35e
 
 dev_dependencies:
   flutter_test:
