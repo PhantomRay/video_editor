@@ -16,7 +16,10 @@ dependencies:
   path: 1.9.0
   path_provider: 2.1.5
   transparent_image: 2.0.1 # show fade-in placeholder in thumbnails generation
-  video_thumbnail: 0.5.3
+  video_thumbnail:
+    git:
+      url: https://github.com/justsoft/video_thumbnail.git
+      ref: 8d30c8f373f9e39fd932cc9a29891e7a17800e93
   better_player_plus:
     git:
       url: https://github.com/PhantomRay/better_player_plus.git
