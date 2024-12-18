@@ -20,7 +20,7 @@ dependencies:
   better_player_plus:
     git:
       url: https://github.com/PhantomRay/better_player_plus.git
-      ref: 48ad33dceea5d8e87fecd3dc144b37f040171e87
+      ref: 96bd121bf748824b5f289b47d341cdd6d139821c
 
 dev_dependencies:
   flutter_test:
