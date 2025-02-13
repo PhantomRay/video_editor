@@ -1,8 +1,6 @@
 .fvm
 .vscode
 
-pubspec.lock
-
 # Miscellaneous
 *.class
 *.log
