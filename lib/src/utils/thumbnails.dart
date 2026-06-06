@@ -5,6 +5,11 @@ import 'package:video_editor/src/controller.dart';
 import 'package:video_editor/src/models/cover_data.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
 
+Uint8List? thumbnailAtOrNull(List<Uint8List> thumbnails, int index) {
+  if (index < 0 || index >= thumbnails.length) return null;
+  return thumbnails[index];
+}
+
 Stream<List<Uint8List>> generateTrimThumbnails(
   VideoEditorController controller, {
   required int quantity,
