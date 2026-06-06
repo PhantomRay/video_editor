@@ -115,19 +115,24 @@ class _ThumbnailSliderState extends State<ThumbnailSlider> {
                   itemBuilder: (_, i) => ValueListenableBuilder<TransformData>(
                     valueListenable: _transform,
                     builder: (_, transform, __) {
+                      final thumbnails = data!;
+                      final placeholder = thumbnailAtOrNull(thumbnails, 0);
+                      if (placeholder == null) return const SizedBox.shrink();
+
                       final index =
-                          getBestIndex(_neededThumbnails, data!.length, i);
+                          getBestIndex(_neededThumbnails, thumbnails.length, i);
+                      final thumbnail = thumbnailAtOrNull(thumbnails, index);
 
                       return Stack(
                         children: [
                           _buildSingleThumbnail(
-                            data[0],
+                            placeholder,
                             transform,
                             isPlaceholder: true,
                           ),
-                          if (index < data.length)
+                          if (thumbnail != null)
                             _buildSingleThumbnail(
-                              data[index],
+                              thumbnail,
                               transform,
                               isPlaceholder: false,
                             ),
