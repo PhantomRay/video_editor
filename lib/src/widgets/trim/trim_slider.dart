@@ -384,6 +384,7 @@ class _TrimSliderState extends State<TrimSlider>
     }
   }
 
+  // ignore: strict_top_level_inference
   void _onHorizontalDragEnd([_]) {
     _preComputedVideoPosition = null;
     _updateControllerIsTrimming(false);

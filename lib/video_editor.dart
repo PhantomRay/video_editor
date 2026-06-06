@@ -1,4 +1,4 @@
-library video_editor;
+library;
 
 export 'src/controller.dart';
 export 'src/export/ffmpeg_export_config.dart';
