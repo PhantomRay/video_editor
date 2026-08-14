@@ -22,7 +22,7 @@ dependencies:
   video_thumbnail:
     git:
       url: https://github.com/PhantomRay/video_thumbnail.git
-      ref: 994ca82b5a59602652e2b5ab48bcb2ec3c4c0b8a
+      ref: d1d824950a8780240fc056ca8eacae89f4f15182
 
 dev_dependencies:
   flutter_test:
